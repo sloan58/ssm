@@ -1,0 +1,30 @@
+# .goreleaser.yml
+version: 2
+
+project_name: ssm
+
+builds:
+  - id: ssm
+    main: .
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+changelog:
+  use: github
+
+release:
+  github:
+    owner: sloan58
+    name: ssm
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
